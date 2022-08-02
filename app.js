@@ -10,13 +10,13 @@ const File = require('./model/file');
 const db = require('./config/database');
 const { resolve } = require('path');
 const { rejects } = require('assert');
-// db.authenticate().then(() => {
-//   console.log('Database connected...');
-// }).catch(err => {
-//   console.log('Error: ' + err);
-// })
-// db.sync(
-// );
+db.authenticate().then(() => {
+  console.log('Database connected...');
+}).catch(err => {
+  console.log('Error: ' + err);
+})
+db.sync(
+);
 
 const app = express();
 app.use(express.json());
