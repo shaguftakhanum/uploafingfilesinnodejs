@@ -1,5 +1,31 @@
 const Blog = require('../model/blog');
 const File = require('../model/file');
+const createblog = async (req, res) => {
+  try {
+
+
+    const { name, images } = req.body
+
+    const blog = await Blog.create({
+      name: name
+    })
+
+    const imagesData = images.map((image) => {
+      return {
+        name: image,
+        type: 1,
+        type_id: blog.id
+
+
+      }
+    })
+
+    File.bulkCreate(imagesData);
+    res.json(blog)
+
+  } catch (error) {
+    res.send(error.message, 500);
+  }}
 
 const deleteblog = async (req, res) => {
   try {
@@ -51,6 +77,7 @@ const findoneblog = async (req, res) => {
   }
 }
 module.exports = {
+  createblog,
   deleteblog,
   findallblog,
   updatebyid,
