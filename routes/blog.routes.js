@@ -1,16 +1,15 @@
 const express=require("express");
 const router=express.Router();
 const {
-    
-    deletePost,
-    findallPost,
+
+    deleteblog,
+    findallblog,
     updatebyid,
-    findonePost
+    findoneblog
 
 }=require("../controllers/blog.controllers");
-
-router.route("/blogs/:id").delete(deletePost);
-router.route("/blogs/getall").get(findallPost);
-router.route("/blogs/:id").get(findonePost);
+router.route("/blogs/:id").delete(deleteblog);
+router.route("/blogs/getall").get(findallblog);
+router.route("/blogs/:id").get(findoneblog);
 router.route("/blogs/:id").put(updatebyid);
 module.exports=router;

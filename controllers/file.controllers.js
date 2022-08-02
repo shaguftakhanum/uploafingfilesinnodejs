@@ -1,11 +1,12 @@
 
 const File = require('../model/file');
-const createPost = async (req, res) => {
+const createfile = async (req, res) => {
   try {
+
 
     const { name, images } = req.body
 
-    const blog = await File.create({
+    const file = await File.create({
       name: name
     })
 
@@ -13,14 +14,14 @@ const createPost = async (req, res) => {
       return {
         name: image,
         type: 1,
-        type_id: blog.id
+        type_id: file.id
 
 
       }
     })
 
     File.bulkCreate(imagesData);
-    res.json(blog)
+    res.json(file)
 
   } catch (error) {
     res.send(error.message, 500);
@@ -30,7 +31,7 @@ const createPost = async (req, res) => {
 
 
 }
-const deletePost = async (req, res) => {
+const deletefile = async (req, res) => {
 
 
   try {
@@ -76,7 +77,7 @@ const updatebyid = async (req, res) => {
 }
 
 
-const findallPost = async (req, res) => {
+const findallfile = async (req, res) => {
   try {
     const files = await File.findAll();
     res.json({ message: "succcess", data: files })
@@ -86,7 +87,7 @@ const findallPost = async (req, res) => {
   }
 }
 
-const findonePost = async (req, res) => {
+const findonefile = async (req, res) => {
   try {
 
     const user = await File.findOne({
@@ -110,11 +111,11 @@ const findonePost = async (req, res) => {
 // console.log('deletePost =>' ,  deletePost);
 
 module.exports = {
-  createPost,
-  deletePost,
-  findallPost,
+  createfile,
+  deletefile,
+  findallfile,
   updatebyid,
-  findonePost
+  findonefile
 
 
 }

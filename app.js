@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const cors = require('cors');
 const multer = require('multer');
-const postRoute = require("./routes/file.routes");
+const fileRoute = require("./routes/file.routes");
 const blogRoute = require("./routes/blog.routes");
 const Blog = require('./model/blog');
 const File = require('./model/file');
@@ -15,15 +15,14 @@ const { rejects } = require('assert');
 // }).catch(err => {
 //   console.log('Error: ' + err);
 // })
-//db.sync(
+// db.sync(
 // );
 
 const app = express();
 app.use(express.json());
+app.use('/static', express(path.join(__dirname, 'images')));
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
-
-// app.use(express.static(path.join(__dirname+'images')));
 var storage = multer.diskStorage({
   destination: function (req, file, callback) {
     callback(null, './images');
@@ -49,26 +48,20 @@ app.post("/images", (req, res) => {
   });
 
 });
+// app.use(express(path.join(__dirname, 'images')));
+// app.get("/a.jpg", (req, res) => {
+//   path.join(__dirname, "./images");
+// });
 
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname,"./images/a.jpg"));
-});
-app.use("/api", postRoute);
+
+
+app.use("/api", fileRoute);
 app.use("/api", blogRoute);
 
-
-
-
-
-
-
-
-const PORT = process.env.PORT || 7000;
+const PORT = process.env.PORT || 8000;
 
 
 app.listen(PORT, console.log(`Server started on port ${PORT}`));
 
 
 
-//https://expressjs.com/en/starter/static-files.html
-//https://dev.to/ericchapman/nodejs-express-part-2-route-parameters-ea3

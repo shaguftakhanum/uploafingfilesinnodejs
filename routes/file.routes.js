@@ -1,18 +1,18 @@
 const express=require("express");
 const router=express.Router();
 const {
-    createPost,
-    deletePost,
-    findallPost,
+    createfile,
+    deletefile,
+    findallfile,
     updatebyid,
-    findonePost
-    
+    findonefile
+
 }=require("../controllers/file.controllers");
 // console.log('deletePost =>' , deletePost);
-router.route("/file/:id").delete(deletePost);
-router.route("/file/create").post(createPost);
-router.route("/file/getall").get(findallPost);
-router.route("/file/:id").get(findonePost);
+router.route("/file/:id").delete(deletefile);
+router.route("/file/create").post(createfile);
+router.route("/file/getall").get(findallfile);
+router.route("/file/:id").get(findonefile);
 router.route("/file/:id").put(updatebyid);
 module.exports=router;
 

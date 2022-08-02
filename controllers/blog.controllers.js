@@ -1,49 +1,49 @@
 const Blog = require('../model/blog');
 const File = require('../model/file');
 
-const deletePost = async (req, res) => {
+const deleteblog = async (req, res) => {
   try {
-    const user = await Blog.destroy({
+    const blog = await Blog.destroy({
       where: {
         id: req.params.id
       }
     })
-    res.json({ message: "succcess", data: user })
+    res.json({ message: "succcess", data: blog })
   } catch (error) {
     res.status(200).send(error.message)
   }
 }
 const updatebyid = async (req, res) => {
   try {
-    const user = await Blog.update(req.body, {
+    const blog = await Blog.update(req.body, {
       where: {
         id: req.params.id,
       }
     })
-    res.json({ message: "succcess", data: user })
+    res.json({ message: "succcess", data: blog })
   }
   catch (error) {
     res.status(200).send(error.message)
   }
 }
-const findallPost = async (req, res) => {
+const findallblog = async (req, res) => {
   try {
-    const files = await Blog.findAll();
-    res.json({ message: "succcess", data: files })
+    const blog = await Blog.findAll();
+    res.json({ message: "succcess", data: blog })
   }
   catch (error) {
     res.status(500).send(error.message)
   }
 }
-const findonePost = async (req, res) => {
+const findoneblog = async (req, res) => {
   try {
-    const user = await Blog.findOne({
+    const blog = await Blog.findOne({
       where: {
         id: req.params.id
       }
     })
 
-    res.json({ message: "succcess", data: user })
+    res.json({ message: "succcess", data: blog })
   }
   catch (error) {
     res.status(500).send(error.message)
@@ -51,11 +51,10 @@ const findonePost = async (req, res) => {
   }
 }
 module.exports = {
-  // createPost,
-  deletePost,
-  findallPost,
+  deleteblog,
+  findallblog,
   updatebyid,
-  findonePost
+  findoneblog
 
 
 }
