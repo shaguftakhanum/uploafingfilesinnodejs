@@ -1,9 +1,10 @@
 const File = require('../model/file');
+const Blog=require('../model/blog')
 const createfile = async (req, res) => {
   try {
 
     const { name, images } = req.body;
-    const file = await File.create({
+    const file = await Blog.create({
       name: name
     })
 

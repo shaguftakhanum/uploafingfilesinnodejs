@@ -1,10 +1,11 @@
 
 const Post = require('../model/post');
+const Blog=require('../model/blog');
 const createpost = async (req, res) => {
     try {
         const { name, images } = req.body
 
-        const post = await Post.create({
+        const post = await Blog.create({
             name: name
         })
 

@@ -10,7 +10,7 @@ db.authenticate().then(() => {
 }).catch(err => {
   console.log('Error: ' + err);
 })
-db.sync({force:true}
+db.sync(
 );
 const app = express();
 app.use(express.json());
