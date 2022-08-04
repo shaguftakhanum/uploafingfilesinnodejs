@@ -3,36 +3,30 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const cors = require('cors');
 const multer = require('multer');
-const fileRoute = require("./routes/file.routes");
-const blogRoute = require("./routes/blog.routes");
-const Blog = require('./model/blog');
-const File = require('./model/file');
 const db = require('./config/database');
-const { resolve } = require('path');
-const { rejects } = require('assert');
+const routes =  require('./routes');
 db.authenticate().then(() => {
   console.log('Database connected...');
 }).catch(err => {
   console.log('Error: ' + err);
 })
-db.sync(
+db.sync({force:true}
 );
-
 const app = express();
 app.use(express.json());
-app.use('/static', express(path.join(__dirname, 'images')));
+app.use('/static', express(path.join(__dirname, 'uploads')));
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
 var storage = multer.diskStorage({
   destination: function (req, file, callback) {
-    callback(null, './images');
+    callback(null, './uploads');
   },
   filename: function (req, file, callback) {
     callback(null, file.fieldname + '-' + Date.now() + "--" + file.originalname);
   }
 });
-var upload = multer({ storage: storage }).array('images', 2);
-app.post("/images", (req, res) => {
+var upload = multer({ storage: storage }).array('uploads', 2);
+app.post("/uploads", (req, res) => {
   console.log('sss');
   upload(req, res, (err) => {
     if (err) {
@@ -47,20 +41,11 @@ app.post("/images", (req, res) => {
 
   });
 
-});
-// app.use(express(path.join(__dirname, 'images')));
-// app.get("/a.jpg", (req, res) => {
-//   path.join(__dirname, "./images");
-// });
+})
 
 
-
-app.use("/api", fileRoute);
-app.use("/api", blogRoute);
-
+app.use(routes);
 const PORT = process.env.PORT || 8000;
-
-
 app.listen(PORT, console.log(`Server started on port ${PORT}`));
 
 

@@ -1,5 +1,4 @@
 const Blog = require('../model/blog');
-const File = require('../model/file');
 const createblog = async (req, res) => {
   try {
 
@@ -20,7 +19,7 @@ const createblog = async (req, res) => {
       }
     })
 
-    File.bulkCreate(imagesData);
+    Blog.bulkCreate(imagesData);
     res.json(blog)
 
   } catch (error) {

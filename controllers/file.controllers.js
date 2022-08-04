@@ -1,11 +1,8 @@
-
 const File = require('../model/file');
 const createfile = async (req, res) => {
   try {
 
-
-    const { name, images } = req.body
-
+    const { name, images } = req.body;
     const file = await File.create({
       name: name
     })
@@ -15,8 +12,6 @@ const createfile = async (req, res) => {
         name: image,
         type: 1,
         type_id: file.id
-
-
       }
     })
 
@@ -24,7 +19,7 @@ const createfile = async (req, res) => {
     res.json(file)
 
   } catch (error) {
-    res.send(error.message, 500);
+    res.status(200).send("error")
   }
 
 
@@ -103,11 +98,6 @@ const findonefile = async (req, res) => {
 
   }
 }
-
-
-
-
-
 // console.log('deletePost =>' ,  deletePost);
 
 module.exports = {
@@ -116,7 +106,5 @@ module.exports = {
   findallfile,
   updatebyid,
   findonefile
-
-
 }
 //https://www.simplilearn.com/tutorials/nodejs-tutorial/nodejs-mongodb
