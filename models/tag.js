@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 const db = require('../config/database');
-const Blog = db.define('blogs', {
+const Tag = db.define('tags', {
     id:{
         type: Sequelize.INTEGER,
         primaryKey:true,
@@ -8,11 +8,15 @@ const Blog = db.define('blogs', {
     }  ,
     name: {
         type: Sequelize.STRING,
+    },
+    type:{
+        type:Sequelize.INTEGER,
+    },
+    type_id:{
+        type:Sequelize.INTEGER,
     }
+
 });
-module.exports = Blog;
-
-
-
+module.exports = Tag;
 
 

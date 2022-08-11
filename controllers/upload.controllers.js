@@ -1,3 +1,4 @@
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
@@ -16,6 +17,7 @@ var storage = multer.diskStorage({
     callback(null, file.fieldname + '-' + Date.now() + "--" + file.originalname);
   }
 });
+module.exports=(req,res)=>{
 var upload = multer({ storage: storage }).array('uploads', 2);
 app.post("/uploads", (req, res) => {
   console.log('sss');
@@ -28,9 +30,10 @@ app.post("/uploads", (req, res) => {
       //url:req.files[0].filename
       url: req.files
 
+
     });
 
   });
 
 })
-module.exports=app;
+}

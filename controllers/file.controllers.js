@@ -1,5 +1,5 @@
-const File = require('../model/file');
-const Blog=require('../model/blog')
+const File = require('../models/file');
+const Blog=require('../models/blog');
 const createfile = async (req, res) => {
   try {
 

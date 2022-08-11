@@ -1,41 +1,37 @@
-
-const Post = require('../models/post');
-const Blog=require('../models/blog');
-const createpost = async (req, res) => {
+const Tag = require('../models/tag');
+const Blog = require('../models/blog');
+const createtag = async (req, res) => {
     try {
-        const { name, images } = req.body
 
-        const post = await Blog.create({
+        const { name, images } = req.body;
+        const tag = await Blog.create({
             name: name
         })
 
         const imagesData = images.map((image) => {
             return {
                 name: image,
-                blog_id: post.id
-
-
+                type: 2,
+                type_id: tag.id
             }
         })
 
-        Post.bulkCreate(imagesData);
-        res.json(post)
+        Tag.bulkCreate(imagesData);
+        res.json(tag)
 
-    }
-    catch (error) {
-        // res.send(error.message, 500);
-         res.status(200).send("error")
+    } catch (error) {
+        res.status(200).send("not posting")
     }
 
 
 
 
 }
-const deletepost = async (req, res) => {
+const deletetag = async (req, res) => {
 
 
     try {
-        const user = await Post.destroy({
+        const user = await Tag.destroy({
             where: {
                 id: req.params.id
             }
@@ -59,7 +55,7 @@ const updatebyid = async (req, res) => {
 
     try {
 
-        const user = await Post.update(req.body, {
+        const user = await Tag.update(req.body, {
             where: {
                 id: req.params.id,
             }
@@ -77,20 +73,20 @@ const updatebyid = async (req, res) => {
 }
 
 
-const findallpost = async (req, res) => {
+const findalltag = async (req, res) => {
     try {
-        const files = await Post.findAll();
-        res.json({ message: "succcess", data: files })
+        const tag = await Tag.findAll();
+        res.json({ message: "succcess", data: tag })
     }
     catch (error) {
         res.status(500).send(error.message)
     }
 }
 
-const findonepost = async (req, res) => {
+const findonetag = async (req, res) => {
     try {
 
-        const user = await Post.findOne({
+        const user = await Tag.findOne({
             where: {
                 id: req.params.id
             }
@@ -103,20 +99,13 @@ const findonepost = async (req, res) => {
 
     }
 }
-
-
-
-
-
 // console.log('deletePost =>' ,  deletePost);
 
 module.exports = {
-    createpost,
-    deletepost,
-    findallpost,
+    createtag,
+    deletetag,
+    findalltag,
     updatebyid,
-    findonepost
-
-
+    findonetag
 }
 //https://www.simplilearn.com/tutorials/nodejs-tutorial/nodejs-mongodb
