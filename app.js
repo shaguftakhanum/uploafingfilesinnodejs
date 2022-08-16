@@ -5,12 +5,13 @@ const cors = require('cors');
 // const multer = require('multer');
 const db = require('./config/database');
 const routes =  require('./routes');
+
 db.authenticate().then(() => {
   console.log('Database connected...');
 }).catch(err => {
   console.log('Error: ' + err);
 })
-db.sync({force:true}
+db.sync(
 );
 const app = express();
 app.use(express.json());

@@ -6,9 +6,11 @@ const {
     deleteblog,
     findallblog,
     updatebyid,
-    findoneblog
+    findoneblog,
+    createblog
 
 }=require("../controllers/blog.controllers");
+router.route("/file/create").post(createblog);
 router.route("/blogs/:id").delete(deleteblog);
 router.route("/blogs/getall").get(findallblog);
 router.route("/blogs/:id").get(findoneblog);

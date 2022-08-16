@@ -12,7 +12,8 @@ const createpost = async (req, res) => {
         const imagesData = images.map((image) => {
             return {
                 name: image,
-                blog_id: post.id
+                blog_id: post.id,
+
 
 
             }
