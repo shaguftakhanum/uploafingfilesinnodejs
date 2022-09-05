@@ -9,14 +9,11 @@ const File = db.define('files', {
     name: {
         type: Sequelize.STRING,
     },
-    type:{
-        type:Sequelize.INTEGER,
-    },
-    type_id:{
-        type:Sequelize.INTEGER,
-    }
+
 
 });
 module.exports = File;
 
 
+// (72) ReactJS - Uploading Files with Axios and FormData - YouTube
+// www.youtube.com

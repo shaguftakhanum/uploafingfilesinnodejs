@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 const db = require('../config/database');
-const Post =require('./post')
+
 const Blog = db.define('blogs', {
     id:{
         type: Sequelize.INTEGER,
@@ -9,9 +9,18 @@ const Blog = db.define('blogs', {
     }  ,
     name: {
         type: Sequelize.STRING,
-    }
+    },
+    type:{
+        type:Sequelize.INTEGER,
+    },
+    type_id:{
+        type:Sequelize.INTEGER,
+
+
+    },
+
 });
-// Blog.hasMany(Post);
+
 module.exports = Blog;
 
 

@@ -14,7 +14,12 @@ const Tag = db.define('tags', {
     },
     type_id:{
         type:Sequelize.INTEGER,
-    }
+        // references: {
+        //     model: 'files',
+        //     key: 'id',
+        //  }
+        }
+
 
 });
 module.exports = Tag;

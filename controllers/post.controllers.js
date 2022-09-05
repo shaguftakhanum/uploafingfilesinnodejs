@@ -1,21 +1,18 @@
 
 const Post = require('../models/post');
-const Blog=require('../models/blog');
 const createpost = async (req, res) => {
     try {
         const { name, images } = req.body
 
-        const post = await Blog.create({
+        const post = await Post.create({
             name: name
         })
 
         const imagesData = images.map((image) => {
             return {
                 name: image,
-                blog_id: post.id,
-
-
-
+                type: 2,
+                type_id: post.id
             }
         })
 
@@ -26,7 +23,7 @@ const createpost = async (req, res) => {
     catch (error) {
         // res.send(error.message, 500);
          res.status(200).send("error")
-    }
+   }
 
 
 
@@ -36,37 +33,30 @@ const deletepost = async (req, res) => {
 
 
     try {
-        const user = await Post.destroy({
+        const posts = await Post.destroy({
             where: {
                 id: req.params.id
             }
         })
 
-        res.json({ message: "succcess", data: user })
+        res.json({ message: "succcess", data: posts })
     } catch (error) {
 
         res.status(200).send(error.message)
     }
 }
 
-
-
-
-
-
-
-
 const updatebyid = async (req, res) => {
 
     try {
 
-        const user = await Post.update(req.body, {
+        const posts = await Post.update(req.body, {
             where: {
                 id: req.params.id,
             }
         })
 
-        res.json({ message: "succcess", data: user })
+        res.json({ message: "succcess", data: posts })
 
     }
 
@@ -80,8 +70,8 @@ const updatebyid = async (req, res) => {
 
 const findallpost = async (req, res) => {
     try {
-        const files = await Post.findAll();
-        res.json({ message: "succcess", data: files })
+        const posts = await Post.findAll();
+        res.json({ message: "succcess", data: posts })
     }
     catch (error) {
         res.status(500).send(error.message)
@@ -91,13 +81,13 @@ const findallpost = async (req, res) => {
 const findonepost = async (req, res) => {
     try {
 
-        const user = await Post.findOne({
+        const posts = await Post.findOne({
             where: {
                 id: req.params.id
             }
         })
 
-        res.json({ message: "succcess", data: user })
+        res.json({ message: "succcess", data: posts })
     }
     catch (error) {
         res.status(500).send(error.message)

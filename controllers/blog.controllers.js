@@ -1,41 +1,25 @@
 const Blog = require('../models/blog');
 const createblog = async (req, res) => {
+  console.log('req ===> ', req.body);
   try {
-
-    const { name, images } = req.body;
+    const name =   req.body.name;
+    const images =   req.body.images;
     const blog = await Blog.create({
-      name: name
+      name: name,
     })
-
     const imagesData = images.map((image) => {
       return {
-        name: image,
-        type: 1,
-        type_id: blog.id
+          name: image,
+          type: 1,
+          type_id: blog.id
       }
-    })
+  })
 
-    File.bulkCreate(imagesData);
+  Blog.bulkCreate(imagesData);
     res.json(blog)
 
-  } catch (error) {
-    res.status(200).send("error")
-  }
-
-
-
-
-}
-const deleteblog = async (req, res) => {
-  try {
-    const blog = await Blog.destroy({
-      where: {
-        id: req.params.id
-      }
-    })
-    res.json({ message: "succcess", data: blog })
-  } catch (error) {
-    res.status(200).send(error.message)
+  } catch (mistake) {
+    res.status(200).send("mistake")
   }
 }
 const updatebyid = async (req, res) => {
@@ -49,6 +33,22 @@ const updatebyid = async (req, res) => {
   }
   catch (error) {
     res.status(200).send(error.message)
+  }
+}
+const deleteblog = async (req, res) => {
+
+
+  try {
+      const blogs = await Blog.destroy({
+          where: {
+              id: req.params.id
+          }
+      })
+
+      res.json({ message: "succcess", data: blogs })
+  } catch (error) {
+
+      res.status(200).send(error.message)
   }
 }
 const findallblog = async (req, res) => {
@@ -81,8 +81,4 @@ module.exports = {
   findallblog,
   updatebyid,
   findoneblog
-
-
 }
-
-
