@@ -2,9 +2,10 @@ const File = require('../models/file');
 const createfile = async (req, res) => {
   try {
 
-    const { name} = req.body;
+    const { name } = req.body;
+    console.log("name ===> ", name);
     const file = await File.create({
-      name: name
+      name: name,
     })
     res.json(file)
 
@@ -39,10 +40,10 @@ const deletefile = async (req, res) => {
 const updatebyid = async (req, res) => {
 
   try {
-
     const files = await File.update(req.body, {
       where: {
-        id: req.params.id,
+        type_id: req.params.id,
+        type:1
       }
     })
 

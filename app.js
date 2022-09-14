@@ -39,9 +39,12 @@ app.post("/uploads", (req, res) => {
       console.log('error =>', err);
       res.status(400).send("Something went wrong!");
     }
+    // const reqFiles = req.files;
+    const filePaths = req.files.map(function(fileData){
+        return `${fileData.fieldname}/${fileData.originalname}`
+    })
     res.status(200).json({
-      url: req.files
-
+      paths: filePaths
     });
 
   });

@@ -9,17 +9,7 @@ const Post = db.define('posts', {
     name: {
         type: Sequelize.STRING,
     },
-    type:{
-        type:Sequelize.INTEGER,
-    },
 
-    type_id:{
-        type:Sequelize.INTEGER,
-         references: {
-            model: 'blogs',
-            key: 'id',
-         }
-    },
 
 });
 module.exports = Post;

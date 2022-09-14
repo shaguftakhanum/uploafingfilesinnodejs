@@ -9,16 +9,7 @@ const Tag = db.define('tags', {
     name: {
         type: Sequelize.STRING,
     },
-    type:{
-        type:Sequelize.INTEGER,
-    },
-    type_id:{
-        type:Sequelize.INTEGER,
-        // references: {
-        //     model: 'files',
-        //     key: 'id',
-        //  }
-        }
+
 
 
 });

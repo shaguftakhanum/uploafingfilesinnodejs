@@ -10,14 +10,7 @@ const Blog = db.define('blogs', {
     name: {
         type: Sequelize.STRING,
     },
-    type:{
-        type:Sequelize.INTEGER,
-    },
-    type_id:{
-        type:Sequelize.INTEGER,
 
-
-    },
 
 });
 

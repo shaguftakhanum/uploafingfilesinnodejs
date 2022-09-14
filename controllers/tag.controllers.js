@@ -1,24 +1,5 @@
 const Tag = require('../models/tag');
-// const createtag = async (req, res) => {
-//     try {
-//     const entry={
-//         name:req.body.name,
-//         type:req.body.type,
-//         type_id:req.body.type_id
-//     }
-//     const tag=await Tag.create();
-//     res.status(200).send(tag);
-
-
-
-//     } catch (error) {
-//         res.status(200).send("not posting")
-//     }
-
-
-
-
-//}
+const File = require('../models/file');
 const createtag = async (req, res) => {
     try {
         const { name, images } = req.body
@@ -30,12 +11,12 @@ const createtag = async (req, res) => {
         const imagesData = images.map((image) => {
             return {
                 name: image,
-                type: 4,
+                type: 3,
                 type_id: tag.id
             }
         })
 
-        Tag.bulkCreate(imagesData);
+        File.bulkCreate(imagesData);
         res.json(tag)
 
     }

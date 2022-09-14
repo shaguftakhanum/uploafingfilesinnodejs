@@ -9,6 +9,15 @@ const File = db.define('files', {
     name: {
         type: Sequelize.STRING,
     },
+    type:{
+        type:Sequelize.INTEGER,
+    },
+
+    type_id:{
+        type:Sequelize.INTEGER,
+
+    },
+
 
 
 });

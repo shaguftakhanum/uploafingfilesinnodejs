@@ -1,5 +1,8 @@
 
 const Post = require('../models/post');
+const File = require('../models/file');
+
+
 const createpost = async (req, res) => {
     try {
         const { name, images } = req.body
@@ -11,12 +14,13 @@ const createpost = async (req, res) => {
         const imagesData = images.map((image) => {
             return {
                 name: image,
-                type: 2,
-                type_id: post.id
+                type_id: post.id,
+                type:2
+
             }
         })
 
-        Post.bulkCreate(imagesData);
+        File.bulkCreate(imagesData);
         res.json(post)
 
     }
