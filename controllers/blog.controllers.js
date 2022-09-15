@@ -45,11 +45,13 @@ const updatebyid = async (req, res) => {
       return {
         name: image,
         type: 1,
-        type_id: blog.id
+        type_id: req.params.id
       }
     })
-    File.bulkCreate(imagesData);
     console.log("imagesData=> ", imagesData)
+
+    File.bulkCreate(imagesData);
+
     res.json({
       message: "succcess", data: {
         ...blog,
@@ -64,19 +66,21 @@ const updatebyid = async (req, res) => {
   }
 }
 const deleteblog = async (req, res) => {
-
-
   try {
     const blogs = await Blog.destroy({
       where: {
         id: req.params.id
       }
     })
-
-
+    const files = await File.destroy({
+      where: {
+        type: 1,
+        type_id: req.params.id
+      }})
     res.json({
       message: "succcess", data: {
-        ...blogs
+        blogs:blogs,
+        files:files
       }
     })
   } catch (error) {
