@@ -1,12 +1,8 @@
-
 const Post = require('../models/post');
 const File = require('../models/file');
-
-
 const createpost = async (req, res) => {
     try {
         const { name, images } = req.body
-
         const post = await Post.create({
             name: name
         })
