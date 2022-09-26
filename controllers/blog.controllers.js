@@ -99,7 +99,7 @@ const findallblog = async (req, res) => {
 }
 const findoneblog = async (req, res) => {
   try {
-    const blog = await Blog.findOne({
+    const blog = await Blog.findOne({ name: req.body.name },{
       where: {
         id: req.params.id
       }
